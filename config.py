@@ -16,9 +16,12 @@ MANIM_MEDIA = DRIVE_ROOT / ".manim_media"
 # --- всё тяжёлое строго на D: (C: переполнен) ---
 os.environ.setdefault("TORCH_HOME", str(CACHE / "torch"))
 os.environ.setdefault("HF_HOME", str(CACHE / "hf"))
-os.environ.setdefault("TMP", str(TMP))
-os.environ.setdefault("TEMP", str(TMP))
-for _p in (CACHE / "torch", CACHE / "hf", TMP, MANIM_MEDIA):
+# Windows ВСЕГДА задаёт TEMP/TMP на C: — принудительно (не setdefault!) уводим
+# на D:, иначе при запуске без env.ps1 временные файлы польются на C:.
+os.environ["TMP"] = os.environ["TEMP"] = str(TMP)
+os.environ["CUDA_CACHE_PATH"] = str(CACHE / "nv_compute")  # JIT-кэш CUDA -> D:
+for _p in (CACHE / "torch", CACHE / "hf", CACHE / "nv_compute", TMP,
+           MANIM_MEDIA):
     _p.mkdir(parents=True, exist_ok=True)
 
 # --- структура проекта ---

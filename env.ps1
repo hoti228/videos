@@ -10,8 +10,9 @@ $env:TEMP                  = "$root\.tmp"
 $env:PIP_CACHE_DIR         = "$root\.cache\pip"
 $env:TORCH_HOME            = "$root\.cache\torch"   # сюда torch.hub качает модель Silero
 $env:HF_HOME               = "$root\.cache\hf"
+$env:CUDA_CACHE_PATH       = "$root\.cache\nv_compute"  # JIT-кэш CUDA -> D:
 $env:UV                    = "$root\.uv\bin\uv.exe"
-foreach ($d in @("$root\.tmp", "$root\.cache\torch", "$root\.cache\hf", "$root\.cache\pip")) {
+foreach ($d in @("$root\.tmp", "$root\.cache\torch", "$root\.cache\hf", "$root\.cache\pip", "$root\.cache\nv_compute")) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Force $d | Out-Null }
 }
 Write-Host "env.ps1 loaded: caches -> D:, uv -> $env:UV"
