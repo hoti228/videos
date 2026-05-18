@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Бинарь ffmpeg (копируется из пакета imageio-ffmpeg)
+.bin/
+
+# Тяжёлые промежуточные артефакты сборки (регенерируются)
+out/**/audio/
+out/**/narration.wav
+out/**/timing.json
+
+# Прочее
+*.log
+*.tmp
+.manim_media/
+.venv/
+.uv/
+.cache/

@@ -1,0 +1,13 @@
+# Установка (всё на D:, C: не трогаем) — см. README.md.
+# torch ставится ОТДЕЛЬНО с индексом CUDA 12.1 (подходит драйверу 551.86,
+# архитектура Pascal sm_61 у GTX 1050 Ti):
+#   uv pip install --index-strategy unsafe-best-match \
+#       --extra-index-url https://download.pytorch.org/whl/cu121 "torch==2.5.1+cu121"
+torch==2.5.1+cu121
+
+# Остальное — обычный PyPI:
+manim==0.18.1
+imageio-ffmpeg==0.5.1
+soundfile==0.12.1
+PyYAML==6.0.2
+numpy<2.0
