@@ -23,6 +23,15 @@ from core.ffmpeg_util import ensure_ffmpeg, bin_dir
 
 EPISODES = {
     "001": ("scenes.ep001", "Episode001", "pochemu-vse-padaet-odinakovo"),
+    "002": ("scenes.ep002", "Episode002", "inertsiya-tormozhenie"),
+    "003": ("scenes.ep003", "Episode003", "moneta-v-avtobuse"),
+    "004": ("scenes.ep004", "Episode004", "sila-tyazhesti"),
+    "005": ("scenes.ep005", "Episode005", "massa-i-ves"),
+    "006": ("scenes.ep006", "Episode006", "ves-na-lune"),
+    "007": ("scenes.ep007", "Episode007", "trenie"),
+    "008": ("scenes.ep008", "Episode008", "pochemu-led-skolzkij"),
+    "009": ("scenes.ep009", "Episode009", "chto-takoe-skorost"),
+    "010": ("scenes.ep010", "Episode010", "srednyaya-skorost-zadacha"),
 }
 
 

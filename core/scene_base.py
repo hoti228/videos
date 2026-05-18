@@ -95,3 +95,19 @@ class NarratedScene(Scene):
         self.play_for(FadeIn(grp, shift=UP * 0.3), frac=frac)
         self.hold()
         self.play_for(FadeOut(grp), frac=0.95)
+
+    def card(self, big, small=None, big_scale=0.8, color=None, frac=0.4):
+        """Универсальный кадр: крупное слово/мысль + подпись. Авто-уместить."""
+        t = Text(big, font=FONT, color=(color or config.BRAND_FG),
+                 weight=BOLD).scale(big_scale)
+        grp = VGroup(t)
+        if small:
+            s = Text(small, font=FONT, color=config.BRAND_MUTED).scale(0.5)
+            s.next_to(t, DOWN, buff=0.45)
+            grp.add(s)
+        grp.move_to(ORIGIN)
+        if grp.width > 12.5:
+            grp.scale(12.5 / grp.width)
+        self.play_for(FadeIn(grp, shift=UP * 0.25), frac=frac)
+        self.hold()
+        self.play_for(FadeOut(grp), frac=0.92)

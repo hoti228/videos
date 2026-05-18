@@ -1,15 +1,16 @@
-"""metadata.json под алгоритмы YouTube: заголовки-варианты, описание с
-ключами и таймкодами, теги, плейлист-серия. Цель — вовлечение, без продаж.
+"""metadata.json под алгоритмы YouTube: заголовки-варианты + структурное
+описание (хук в 1-й строке, польза, проверка фактов, вопрос для
+комментариев, подписка, плейлист, хэштеги). Цель — вовлечение, без продаж.
 """
 from __future__ import annotations
 import json
-from pathlib import Path
+import re
 
 import config
 from pipeline.topics import get_topic
 
 SERIES_PLAYLIST = {
-    "A": "Движение и силы — физика для 7–8 класса",
+    "A": "Движение и силы — физика 7–8 класс",
     "B": "Давление, жидкости и газы — физика 7–8 класс",
     "C": "Тепло и температура — физика 7–8 класс",
     "D": "Электричество — физика 7–8 класс",
@@ -19,40 +20,71 @@ SERIES_PLAYLIST = {
     "H": "Энергия и механизмы — физика 7–8 класс",
 }
 
+# Короткий релевантный список — мусорные теги вредят ранжированию.
+BASE_TAGS = ["физика", "физика для детей", "физика 7 класс",
+             "физика 8 класс", "наука простым языком", "образование"]
+HASHTAGS = "#физика #наука #школа #7класс #8класс #образование"
 
-def generate_metadata(episode: str, duration_sec: float) -> Path:
+
+def _clip(s: str, n: int) -> str:
+    s = s.strip()
+    return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+
+def _title_variants(title: str, alt: list[str]) -> list[str]:
+    core = title.rstrip("?！!.").strip()
+    cand = [title] + list(alt) + [
+        f"{core} — простыми словами",
+        f"{title} | Физика за 5 минут",
+        f"{core}? Физика 7–8 класс за 5 минут",
+    ]
+    out, seen = [], set()
+    for c in cand:
+        c = _clip(c, 90)
+        k = c.lower()
+        if c and k not in seen:
+            seen.add(k)
+            out.append(c)
+    return out[:4]
+
+
+def generate_metadata(episode: str, duration_sec: float):
     t = get_topic(episode)
     title = t.get("title", "Физика просто")
-    titles = [title] + list(t.get("alt_titles", []))
-    hook = t.get("hook", "")
+    hook = t.get("hook", title)
     learn = t.get("learn", [])
-    tags = t.get("tags", [])
+    tags = list(t.get("tags", [])) + BASE_TAGS
+    tags = list(dict.fromkeys(t.strip() for t in tags if t.strip()))[:15]
     series = t.get("series", "A")
+    comment_q = t.get("comment_q", "А как думаешь — каким будет ответ? "
+                      "Напиши в комментариях 👇")
+    mins = max(2, round(duration_sec / 60))
 
-    desc = []
-    desc.append(hook or title)
-    desc.append(f"Физика для 7–8 класса за {int(duration_sec // 60)}–"
-                f"{int(duration_sec // 60) + 1} минут — коротко, наглядно, "
-                f"с проверенными фактами.")
-    desc.append("")
+    d = []
+    d.append(_clip(hook, 150))                      # 1-я строка — ключевая
+    d.append(f"Физика для 7–8 класса за ~{mins} мин: коротко, наглядно "
+             f"и с проверенными фактами.")
+    d.append("")
     if learn:
-        desc.append("Что ты поймёшь из этого видео:")
-        desc += [f"• {x}" for x in learn]
-        desc.append("")
-    desc.append("Все числа и факты в ролике перепроверены по первоисточникам "
-                "(NASA, NIST и др.).")
-    desc.append("")
-    desc.append("💬 Ответь на вопрос в конце видео в комментариях — "
-                "это реально помогает каналу.")
-    desc.append("🔔 Подпишись, чтобы не пропустить следующий выпуск.")
-    desc.append("")
-    desc.append("#физика #наука #школа #7класс #8класс #образование")
+        d.append("🔎 В этом выпуске:")
+        d += [f" • {x}" for x in learn]
+        d.append("")
+    d.append("✅ Все числа и факты перепроверены по первоисточникам "
+             "(NASA, NIST, научные публикации).")
+    d.append("")
+    d.append(f"💬 {comment_q}")
+    d.append("🔔 Подпишись — новые выпуски по физике регулярно. "
+             "Это лучшее видео, чтобы начать понимать физику с нуля.")
+    d.append("")
+    d.append(f"▶ Серия: {SERIES_PLAYLIST.get(series, '')}")
+    d.append("")
+    d.append(HASHTAGS)
 
     meta = {
         "episode": episode,
-        "title_variants": titles,           # для A/B по CTR
-        "title": titles[0],
-        "description": "\n".join(desc),
+        "title": _clip(title, 90),
+        "title_variants": _title_variants(title, t.get("alt_titles", [])),
+        "description": "\n".join(d),
         "tags": tags,
         "category": "Education",
         "language": "ru",
@@ -60,12 +92,14 @@ def generate_metadata(episode: str, duration_sec: float) -> Path:
         "playlist": SERIES_PLAYLIST.get(series, ""),
         "made_for_kids": False,
         "thumbnail_text": t.get("thumb", title),
+        "pinned_comment": comment_q,
         "duration_sec": round(duration_sec, 1),
         "publish_notes": [
-            "Загрузить .srt как субтитры (ru) — это плюс к SEO и досмотру.",
-            "Добавить видео в плейлист серии (см. поле playlist).",
+            "Заголовок: протестировать 2–3 варианта из title_variants по CTR.",
+            "Загрузить .srt как субтитры (ru) — плюс к SEO и досмотру.",
+            "Добавить в плейлист серии (поле playlist).",
             "Конечная заставка: следующий выпуск серии + кнопка подписки.",
-            "Закрепить комментарий с вопросом из концовки.",
+            "Закрепить pinned_comment первым комментарием.",
             "Первые 1–2 часа отвечать на комментарии — важный сигнал.",
         ],
     }
@@ -78,4 +112,4 @@ def generate_metadata(episode: str, duration_sec: float) -> Path:
 
 if __name__ == "__main__":
     import sys
-    print(generate_metadata(sys.argv[1] if len(sys.argv) > 1 else "001", 240))
+    print(generate_metadata(sys.argv[1] if len(sys.argv) > 1 else "001", 130))
