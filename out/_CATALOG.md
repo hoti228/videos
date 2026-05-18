@@ -7,13 +7,13 @@
 - Видео: `D:\ggpolole\physics_channel\out\001\001_pochemu-vse-padaet-odinakovo.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\001\001_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\001\001.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\001\title.txt` · `D:\ggpolole\physics_channel\out\001\description.txt` · `D:\ggpolole\physics_channel\out\001\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Почему всё падает одинаково быстро?
 2. Молоток и перо: что упадёт быстрее? (проверено на Луне)
 3. Почему в вакууме всё падает одинаково — простыми словами
-4. Почему всё падает одинаково быстро — простыми словами
 
 **Описание:**
 ```
@@ -46,13 +46,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\002\002_inertsiya-tormozhenie.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\002\002_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\002\002.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\002\title.txt` · `D:\ggpolole\physics_channel\out\002\description.txt` · `D:\ggpolole\physics_channel\out\002\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Что такое инерция и почему вас бросает вперёд при торможении?
-2. Что такое инерция и почему вас бросает вперёд при торможении — простыми словами
-3. Что такое инерция и почему вас бросает вперёд при торможении? | Физика за 5 минут
-4. Что такое инерция и почему вас бросает вперёд при торможении? Физика 7–8 класс за 5 минут
+2. Что такое инерция и почему вас бросает вперёд при торможении — просты…
 
 **Описание:**
 ```
@@ -79,13 +78,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\003\003_moneta-v-avtobuse.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\003\003_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\003\003.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\003\title.txt` · `D:\ggpolole\physics_channel\out\003\description.txt` · `D:\ggpolole\physics_channel\out\003\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Почему в едущем автобусе подброшенная монетка падает в руку?
-2. Почему в едущем автобусе подброшенная монетка падает в руку — простыми словами
-3. Почему в едущем автобусе подброшенная монетка падает в руку? | Физика за 5 минут
-4. Почему в едущем автобусе подброшенная монетка падает в руку? Физика 7–8 класс за 5 минут
+2. Почему в едущем автобусе подброшенная монетка падает в руку — простым…
 
 **Описание:**
 ```
@@ -112,13 +110,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\004\004_sila-tyazhesti.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\004\004_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\004\004.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\004\title.txt` · `D:\ggpolole\physics_channel\out\004\description.txt` · `D:\ggpolole\physics_channel\out\004\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Сила тяжести: почему мы не улетаем с Земли?
 2. Сила тяжести: почему мы не улетаем с Земли — простыми словами
-3. Сила тяжести: почему мы не улетаем с Земли? | Физика за 5 минут
-4. Сила тяжести: почему мы не улетаем с Земли? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -145,13 +142,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\005\005_massa-i-ves.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\005\005_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\005\005.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\005\title.txt` · `D:\ggpolole\physics_channel\out\005\description.txt` · `D:\ggpolole\physics_channel\out\005\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Чем масса отличается от веса?
 2. Чем масса отличается от веса — простыми словами
-3. Чем масса отличается от веса? | Физика за 5 минут
-4. Чем масса отличается от веса? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -178,13 +174,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\006\006_ves-na-lune.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\006\006_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\006\006.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\006\title.txt` · `D:\ggpolole\physics_channel\out\006\description.txt` · `D:\ggpolole\physics_channel\out\006\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Почему на Луне ты весишь в 6 раз меньше?
 2. Почему на Луне ты весишь в 6 раз меньше — простыми словами
-3. Почему на Луне ты весишь в 6 раз меньше? | Физика за 5 минут
-4. Почему на Луне ты весишь в 6 раз меньше? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -211,13 +206,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\007\007_trenie.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\007\007_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\007\007.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\007\title.txt` · `D:\ggpolole\physics_channel\out\007\description.txt` · `D:\ggpolole\physics_channel\out\007\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Трение: почему без него нельзя ходить?
 2. Трение: почему без него нельзя ходить — простыми словами
-3. Трение: почему без него нельзя ходить? | Физика за 5 минут
-4. Трение: почему без него нельзя ходить? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -244,13 +238,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\008\008_pochemu-led-skolzkij.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\008\008_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\008\008.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\008\title.txt` · `D:\ggpolole\physics_channel\out\008\description.txt` · `D:\ggpolole\physics_channel\out\008\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Почему лёд скользкий?
 2. Почему лёд скользкий — простыми словами
-3. Почему лёд скользкий? | Физика за 5 минут
-4. Почему лёд скользкий? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -277,13 +270,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\009\009_chto-takoe-skorost.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\009\009_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\009\009.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\009\title.txt` · `D:\ggpolole\physics_channel\out\009\description.txt` · `D:\ggpolole\physics_channel\out\009\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Что такое скорость и как её измеряют?
 2. Что такое скорость и как её измеряют — простыми словами
-3. Что такое скорость и как её измеряют? | Физика за 5 минут
-4. Что такое скорость и как её измеряют? Физика 7–8 класс за 5 минут
 
 **Описание:**
 ```
@@ -310,13 +302,12 @@
 - Видео: `D:\ggpolole\physics_channel\out\010\010_srednyaya-skorost-zadacha.mp4`
 - Обложка: `D:\ggpolole\physics_channel\out\010\010_thumbnail.png`
 - Субтитры: `D:\ggpolole\physics_channel\out\010\010.srt`
+- 📋 Копировать в 2 клика: `D:\ggpolole\physics_channel\out\010\title.txt` · `D:\ggpolole\physics_channel\out\010\description.txt` · `D:\ggpolole\physics_channel\out\010\tags.txt`
 - Плейлист: Движение и силы — физика 7–8 класс
 
 **Заголовок (варианты для A/B):**
 1. Хитрая задача на среднюю скорость, где ошибаются почти все
-2. Хитрая задача на среднюю скорость, где ошибаются почти все — простыми словами
-3. Хитрая задача на среднюю скорость, где ошибаются почти все | Физика за 5 минут
-4. Хитрая задача на среднюю скорость, где ошибаются почти все? Физика 7–8 класс за 5 минут
+2. Хитрая задача на среднюю скорость, где ошибаются почти все — простыми…
 
 **Описание:**
 ```

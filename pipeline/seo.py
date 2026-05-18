@@ -33,19 +33,15 @@ def _clip(s: str, n: int) -> str:
 
 def _title_variants(title: str, alt: list[str]) -> list[str]:
     core = title.rstrip("?！!.").strip()
-    cand = [title] + list(alt) + [
-        f"{core} — простыми словами",
-        f"{title} | Физика за 5 минут",
-        f"{core}? Физика 7–8 класс за 5 минут",
-    ]
+    cand = [title] + list(alt) + [f"{core} — простыми словами"]
     out, seen = [], set()
     for c in cand:
-        c = _clip(c, 90)
+        c = _clip(c, 70)            # YouTube показывает ~70 символов
         k = c.lower()
         if c and k not in seen:
             seen.add(k)
             out.append(c)
-    return out[:4]
+    return out[:3]
 
 
 def generate_metadata(episode: str, duration_sec: float):
@@ -82,7 +78,7 @@ def generate_metadata(episode: str, duration_sec: float):
 
     meta = {
         "episode": episode,
-        "title": _clip(title, 90),
+        "title": _clip(title, 70),
         "title_variants": _title_variants(title, t.get("alt_titles", [])),
         "description": "\n".join(d),
         "tags": tags,
@@ -104,12 +100,41 @@ def generate_metadata(episode: str, duration_sec: float):
         ],
     }
     out = config.OUT / episode / "metadata.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
+    base = out.parent
+    base.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(meta, ensure_ascii=False, indent=2),
                     encoding="utf-8")
+    # Простые .txt для копирования в 2 клика: открыл файл → Ctrl+A → Ctrl+C.
+    (base / "title.txt").write_text(meta["title"], encoding="utf-8")
+    (base / "description.txt").write_text(meta["description"],
+                                          encoding="utf-8")
+    (base / "tags.txt").write_text(", ".join(meta["tags"]),
+                                   encoding="utf-8")
+    (base / "pinned_comment.txt").write_text(meta["pinned_comment"],
+                                             encoding="utf-8")
     return out
+
+
+def regen_all():
+    """Перегенерировать метаданные и .txt для всех готовых видео
+    (без пересборки): длительность берём из существующего metadata.json."""
+    done = []
+    for md in sorted(config.OUT.glob("*/metadata.json")):
+        ep = md.parent.name
+        try:
+            dur = json.loads(md.read_text(encoding="utf-8")).get(
+                "duration_sec", 130)
+        except Exception:  # noqa: BLE001
+            dur = 130
+        generate_metadata(ep, dur)
+        done.append(ep)
+    return done
 
 
 if __name__ == "__main__":
     import sys
-    print(generate_metadata(sys.argv[1] if len(sys.argv) > 1 else "001", 130))
+    arg = sys.argv[1] if len(sys.argv) > 1 else "001"
+    if arg == "all":
+        print("regenerated:", ", ".join(regen_all()))
+    else:
+        print(generate_metadata(arg, 130))

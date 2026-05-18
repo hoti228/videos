@@ -29,6 +29,8 @@ def build() -> str:
             f"- Видео: `{mp4 if mp4 else d}`",
             f"- Обложка: `{d / (ep + '_thumbnail.png')}`",
             f"- Субтитры: `{d / (ep + '.srt')}`",
+            f"- 📋 Копировать в 2 клика: `{d / 'title.txt'}` · "
+            f"`{d / 'description.txt'}` · `{d / 'tags.txt'}`",
             f"- Плейлист: {m.get('playlist','')}",
             "",
             "**Заголовок (варианты для A/B):**",
