@@ -65,8 +65,8 @@ NARRATION = [
     "падали они медленно и плавно — но строго вместе. Галилей оказался прав.",
     # 12 — аутро, вовлечение (без продаж)
     "Итог: кто упадёт быстрее, решает не вес, а воздух. "
-    "А как думаешь: что коснётся земли первым в вакууме — кирпич или ты сам? "
-    "Напиши в комментариях и смотри следующий выпуск.",
+    "А как думаешь: одинаковый шарик упадёт быстрее на Земле или на Луне? "
+    "И почему? Напиши ответ в комментариях и смотри следующий выпуск.",
 ]
 
 
@@ -204,33 +204,68 @@ class Episode001(NarratedScene):
         self.hold()
         self.play_for(FadeOut(VGroup(tube, lab, h, f)), frac=0.9)
 
-    # 7
+    # 7 — рост скорости при ПАДЕНИИ с ключевыми точками (v = g·t)
     def beat_7(self):
-        axis = Line(DOWN * 2.6, UP * 2.6, color=MUT).shift(LEFT * 4.0)
-        cap = Text("скорость растёт", font=FONT, color=MUT).scale(0.45)
-        cap.next_to(axis, UP, 0.2)
-        d = Dot(axis.get_bottom(), color=ACC, radius=0.12)
-        big = Text("g ≈ 9,8 м/с²", font=FONT, color=ACC, weight=BOLD).scale(1.0)
-        big.shift(RIGHT * 1.5)
-        self.play_for(Create(axis), FadeIn(cap), FadeIn(d), frac=0.35)
-        self.play_for(d.animate.move_to(axis.get_top()), frac=0.4,
-                      rate_func=lambda t: t * t)
-        self.play_for(FadeIn(big, scale=1.2), frac=0.55)
+        x = LEFT * 4.4
+        track = Line(x + UP * 3.0, x + DOWN * 3.0, color=MUT, stroke_width=5)
+        cap = Text("СВОБОДНОЕ ПАДЕНИЕ", font=FONT, color=MUT,
+                   weight=BOLD).scale(0.38)
+        cap.next_to(track, UP, 0.22)
+        ball = Circle(radius=0.22, color=ACC, fill_opacity=1).set_fill(ACC)
+        ball.move_to(track.get_top())
+
+        ys = [3.0, 1.0, -1.0, -3.0]
+        secs = ["0 с", "1 с", "2 с", "3 с"]
+        spds = ["0 м/с", "9,8 м/с", "19,6 м/с", "29,4 м/с"]
+        alen = [0.05, 0.95, 1.9, 2.85]   # длина стрелки ∝ скорости
+        marks = []
+        for y, sc, sp, ln in zip(ys, secs, spds, alen):
+            p = x + UP * y
+            tick = Line(p + LEFT * 0.18, p + RIGHT * 0.18, color=MUT,
+                        stroke_width=4)
+            ts = Text(sc, font=FONT, color=MUT).scale(0.4)
+            ts.next_to(tick, LEFT, 0.18)
+            arr = Arrow(p, p + RIGHT * max(ln, 0.05), color=ACC, buff=0,
+                        stroke_width=6, max_tip_length_to_length_ratio=0.3)
+            vs = Text(sp, font=FONT, color=FG, weight=BOLD).scale(0.46)
+            vs.next_to(arr, RIGHT, 0.18)
+            marks.append(VGroup(tick, ts, arr, vs))
+        marks_g = VGroup(*marks)
+
+        big = Text("g ≈ 9,8 м/с²", font=FONT, color=ACC,
+                   weight=BOLD).scale(0.95)
+        sub = Text("за каждую секунду\nскорость растёт на 9,8 м/с",
+                   font=FONT, color=MUT).scale(0.42)
+        info = VGroup(big, sub).arrange(DOWN, buff=0.35).shift(RIGHT * 3.3)
+
+        self.play_for(Create(track), FadeIn(cap), FadeIn(ball), frac=0.22)
+        self.play_for(ball.animate.move_to(track.get_bottom()),
+                      frac=0.3, rate_func=lambda t: t * t)
+        for m in marks:
+            self.play_for(FadeIn(m, shift=RIGHT * 0.2), frac=0.42)
+        self.play_for(FadeIn(info, scale=1.1), frac=0.7)
         self.hold()
-        self.play_for(FadeOut(VGroup(axis, cap, d, big)), frac=0.9)
+        self.play_for(FadeOut(VGroup(track, cap, ball, marks_g, info)),
+                      frac=0.9)
 
     # 8
     def beat_8(self):
-        moon = Circle(radius=2.3, color=MUT, fill_opacity=0.25).set_fill(MUT)
-        moon.shift(DOWN * 0.2)
-        t1 = Text("Аполлон-15", font=FONT, color=FG, weight=BOLD).scale(0.8)
-        t2 = Text("2 августа 1971 · Луна", font=FONT, color=ACC).scale(0.5)
-        t1.to_edge(UP, buff=1.1)
-        t2.next_to(t1, DOWN, 0.25)
-        self.play_for(FadeIn(moon, scale=1.2), frac=0.4)
-        self.play_for(FadeIn(t1, shift=DOWN * 0.2), FadeIn(t2), frac=0.55)
+        t1 = Text("Аполлон-15", font=FONT, color=FG, weight=BOLD).scale(0.85)
+        t2 = Text("2 августа 1971 · опыт на Луне", font=FONT,
+                  color=ACC).scale(0.5)
+        t1.to_edge(UP, buff=0.9)
+        t2.next_to(t1, DOWN, 0.28)
+        moon = Circle(radius=1.45, color=MUT, fill_opacity=0.25).set_fill(MUT)
+        moon.move_to(DOWN * 1.15)
+        cr1 = Circle(radius=0.22, color=MUT, fill_opacity=0.5).set_fill(MUT)
+        cr1.move_to(moon.get_center() + LEFT * 0.5 + UP * 0.35)
+        cr2 = Circle(radius=0.14, color=MUT, fill_opacity=0.5).set_fill(MUT)
+        cr2.move_to(moon.get_center() + RIGHT * 0.45 + DOWN * 0.2)
+        m = VGroup(moon, cr1, cr2)
+        self.play_for(FadeIn(t1, shift=DOWN * 0.2), FadeIn(t2), frac=0.4)
+        self.play_for(FadeIn(m, scale=1.15), frac=0.55)
         self.hold()
-        self.play_for(FadeOut(VGroup(moon, t1, t2)), frac=0.9)
+        self.play_for(FadeOut(VGroup(t1, t2, m)), frac=0.9)
 
     # 9
     def beat_9(self):
@@ -289,8 +324,9 @@ class Episode001(NarratedScene):
         a = Text("Решает не вес — решает воздух.", font=FONT, color=FG,
                  weight=BOLD).scale(0.72)
         a.to_edge(UP, buff=1.3)
-        q = Text("В вакууме: кирпич или ты сам?", font=FONT, color=ACC,
-                 weight=BOLD).scale(0.6).next_to(a, DOWN, 0.6)
+        q = Text("Где шарик упадёт быстрее:\nна Земле или на Луне?",
+                 font=FONT, color=ACC, weight=BOLD).scale(0.6)
+        q.next_to(a, DOWN, 0.6)
         cta = Text("Пиши в комментариях · Следующий выпуск →", font=FONT,
                    color=MUT).scale(0.5).to_edge(DOWN, buff=1.0)
         self.play_for(FadeIn(a, shift=DOWN * 0.2), frac=0.35)
